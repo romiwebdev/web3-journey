@@ -58,4 +58,4 @@ contract CoffeeMachine {
 
 Berikut adalah tampilan smart contract di Remix IDE:
 
-![Smart Contract Mesin Kopi](coffee-contract.png)
+![Smart Contract Mesin Kopi](day1/coffee-contract.png)
