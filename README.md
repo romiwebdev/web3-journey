@@ -1,8 +1,4 @@
-
-
-# 📘 Progress Belajar Web3
-
- # Hari 1
+# 📘 Progress Belajar Web3 - Hari 1
 
 ## 🧠 Materi yang Dipelajari
 
@@ -62,12 +58,16 @@ Berikut adalah tampilan smart contract di Remix IDE:
 
 ---
 
-# Hari 2
+
+
+# 📘 Progress Belajar Web3 - Hari 2
 
 ## 🧠 Materi yang Dipelajari
 - Membuat token ERC-20 sederhana menggunakan Solidity.
-- Mengenal standar token Ethereum: **ERC-20**.
-- Memahami konsep `totalSupply`, `balanceOf`, `transfer`, dan event `Transfer`.
+- Mengenal konsep `totalSupply`, `balanceOf`, `transfer`, dan event `Transfer`.
+- Simulasi deploy dan penggunaan smart contract di [Remix IDE](https://remix.ethereum.org/).
+
+---
 
 ## 🚀 Proyek KentangCoin 🥔
 
@@ -77,14 +77,20 @@ Hari ini saya membuat token bernama **KentangCoin (KENTANG)** berbasis standar *
 - Fungsi transfer antar wallet
 - Event log setiap kali terjadi transfer
 
-### 🔧 Cara Pakai
-1. Buka [Remix IDE](https://remix.ethereum.org/)
-2. Buat file baru bernama `KentangCoin.sol`
-3. Salin kode dari template di bawah
-4. Compile dan deploy smart contract
-5. Coba fungsi `transfer` ke alamat lain
+---
 
-### 📄 Kode Smart Contract Lengkap
+## 📄 Langkah-Langkah Simulasi di Remix IDE
+
+### 1. Buka Remix IDE
+👉 Akses: [https://remix.ethereum.org/](https://remix.ethereum.org/)
+
+### 2. Buat File Baru
+- Klik ikon **File Explorer** di sebelah kiri.
+- Klik tombol **+** untuk membuat file baru.
+- Nama file: `KentangCoin.sol`
+
+### 3. Salin Kode Smart Contract
+Salin kode berikut ke dalam file `KentangCoin.sol`:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -127,15 +133,45 @@ contract KentangCoin is IERC20 {
 }
 ```
 
-### 🖼️ Screenshot Hasil Deploy
+### 4. Compile Smart Contract
+- Pilih tab **Solidity Compiler** di panel kiri.
+- Klik **Compile KentangCoin.sol**.
+- Pastikan tidak ada error.
+
+### 5. Deploy Smart Contract
+- Pilih tab **Deploy & Run Transactions**.
+- Di bagian **Environment**, pilih **JavaScript VM** (simulasi lokal).
+- Klik **Deploy**.
+
+> Setelah deploy berhasil, kontrak akan otomatis memberikan semua token (1.000.000 KENTANG) ke akun pertama.
+
+### 6. Cek Saldo Akun
+- Di bawah bagian **Deployed Contracts**, klik tombol **balanceOf**.
+- Masukkan alamat akun deployer (misalnya: `0x5AEDA56215b84a05ff784d9e7f3af3E3c3fd9cf7`) → klik **call**.
+- Harus muncul nilai besar seperti `1000000000000000000000000`.
+
+### 7. Uji Fungsi Transfer
+- Klik tombol **transfer**.
+- Masukkan:
+  - `_to`: alamat tujuan (misalnya: `0xAbc...`)
+  - `_amount`: jumlah token yang ingin dikirim (misalnya: `1000000000000000000000` = 1.000 KENTANG)
+- Klik **transact**
+
+> Jika berhasil, kamu bisa lihat event `Transfer` muncul di konsol Remix.
+
+### 8. Periksa Saldo Tujuan
+- Gunakan fungsi `balanceOf` lagi untuk alamat tujuan.
+- Harus muncul saldo bertambah sesuai jumlah yang ditransfer.
+
+---
+
+## 🖼️ Screenshot Hasil Deploy
 
 ![Hasil Deploy KentangCoin di Remix](day2/kentangcoin.png)
 
-
-
+---
 
 ## 📌 Catatan Penting
-- Saya menggunakan **standar ERC-20**, sehingga token bisa dikenali oleh wallet seperti MetaMask.
-- Token ini belum memiliki fitur approval (`approve`, `allowance`) — akan ditambahkan di hari berikutnya.
-- Untuk saat ini, semua token didistribusikan ke akun deployer.
-
+- Saat ini, token hanya bisa ditransfer oleh pemilik.
+- Fungsi approval (`approve`, `allowance`) belum tersedia — akan dibuat di hari berikutnya.
+- Untuk saat ini, semua token didistribusikan ke akun deployer via constructor.
