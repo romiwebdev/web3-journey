@@ -59,3 +59,83 @@ contract CoffeeMachine {
 Berikut adalah tampilan smart contract di Remix IDE:
 
 ![Smart Contract Mesin Kopi](day1/coffee-contract.png)
+
+```
+
+# 📘 Progress Belajar Web3 
+
+# Hari 2
+
+## 🧠 Materi yang Dipelajari
+- Membuat token ERC-20 sederhana menggunakan Solidity.
+- Mengenal standar token Ethereum: **ERC-20**.
+- Memahami konsep `totalSupply`, `balanceOf`, `transfer`, dan event `Transfer`.
+
+## 🚀 Proyek KentangCoin 🥔
+
+### 💡 Deskripsi
+Hari ini saya membuat token bernama **KentangCoin (KENTANG)** berbasis standar **ERC-20** di jaringan Ethereum. Token ini memiliki fitur dasar:
+- Total supply awal: **1.000.000 KENTANG**
+- Fungsi transfer antar wallet
+- Event log setiap kali terjadi transfer
+
+### 🔧 Cara Pakai
+1. Buka [Remix IDE](https://remix.ethereum.org/)
+2. Buat file baru bernama `KentangCoin.sol`
+3. Salin kode dari template di bawah
+4. Compile dan deploy smart contract
+5. Coba fungsi `transfer` ke alamat lain
+
+### 📄 Kode Smart Contract Lengkap
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+interface IERC20 {
+    function totalSupply() external view returns (uint256);
+    function balanceOf(address account) external view returns (uint256);
+    function transfer(address recipient, uint256 amount) external returns (bool);
+    event Transfer(address indexed from, address indexed to, uint256 value);
+}
+
+contract KentangCoin is IERC20 {
+    string public constant name = "KentangCoin";
+    string public constant symbol = "KENTANG";
+    uint8 public constant decimals = 18;
+
+    uint256 private _totalSupply = 1_000_000 * (10 ** uint256(decimals));
+    mapping(address => uint256) private _balances;
+
+    constructor() {
+        _balances[msg.sender] = _totalSupply;
+    }
+
+    function totalSupply() public view override returns (uint256) {
+        return _totalSupply;
+    }
+
+    function balanceOf(address account) public view override returns (uint256) {
+        return _balances[account];
+    }
+
+    function transfer(address recipient, uint256 amount) public override returns (bool) {
+        require(_balances[msg.sender] >= amount, "Saldo tidak mencukupi");
+        _balances[msg.sender] -= amount;
+        _balances[recipient] += amount;
+        emit Transfer(msg.sender, recipient, amount);
+        return true;
+    }
+}
+```
+
+### 🖼️ Screenshot Hasil Deploy
+
+![Hasil Deploy KentangCoin di Remix](day2/kentangcoin.png)
+---
+
+## 📌 Catatan Penting
+- Saya menggunakan **standar ERC-20**, sehingga token bisa dikenali oleh wallet seperti MetaMask.
+- Token ini belum memiliki fitur approval (`approve`, `allowance`) — akan ditambahkan di hari berikutnya.
+- Untuk saat ini, semua token didistribusikan ke akun deployer.
+
