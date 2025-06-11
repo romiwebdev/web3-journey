@@ -35,7 +35,7 @@ Saya mulai dengan membuat analogi sederhana: **mesin kopi digital berbasis smart
 
 ### 🧑‍💻 Contoh Kode Solidity Lengkap:
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
