@@ -60,9 +60,7 @@ Berikut adalah tampilan smart contract di Remix IDE:
 
 ![Smart Contract Mesin Kopi](day1/coffee-contract.png)
 
-```
-
-# 📘 Progress Belajar Web3 
+---
 
 # Hari 2
 
@@ -132,7 +130,9 @@ contract KentangCoin is IERC20 {
 ### 🖼️ Screenshot Hasil Deploy
 
 ![Hasil Deploy KentangCoin di Remix](day2/kentangcoin.png)
----
+
+
+
 
 ## 📌 Catatan Penting
 - Saya menggunakan **standar ERC-20**, sehingga token bisa dikenali oleh wallet seperti MetaMask.
